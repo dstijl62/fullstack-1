@@ -1,0 +1,101 @@
+body {
+  width: 1170px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  /* position: sticky;  */
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04aa6d;
+  color: white;
+}
+
+/* //////////////////// */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #d6eeee;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #333;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ========================== */
+
+.create-user-container {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* căn giữa ngang */
+  justify-content: center;
+
+  border: 1px solid #ccc; /* khung viền */
+  border-radius: 6px; /* bo góc nhẹ */
+  width: 250px;
+  margin: 20px auto; /* căn giữa container */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* bóng nhẹ */
+}
+
+.create-user-container label {
+  display: block;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.create-user-container input {
+  text-align: left; /* chữ căn trái */
+  padding: 6px 10px; /* cho đẹp hơn */
+  width: 250px; /* tùy bạn */
+  box-sizing: border-box;
+}
