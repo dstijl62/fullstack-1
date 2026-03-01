@@ -5,6 +5,7 @@ const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize("bookingcare", "root", null, {
   host: "localhost",
   dialect: "mysql",
+  timezone: "+07:00", // Đảm bảo dòng này có mặt
   logging: false,
 });
 
