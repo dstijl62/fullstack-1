@@ -114,21 +114,22 @@ let createNewUser = (data) => {
       if (check === true) {
         resolve({
           errCode: 1,
-          message: "The email address is already in use, Plz try another email",
+          errMessage:
+            "The email address is already in use, Plz try another email",
+        });
+      } else {
+        let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+        await db.User.create({
+          email: data.email,
+          password: hashPasswordFromBcrypt,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          address: data.address,
+          phonenumber: data.phonenumber,
+          gender: data.gender === "1" ? true : false,
+          roleId: data.roleId,
         });
       }
-
-      let hashPasswordFromBcrypt = await hashUserPassword(data.password);
-      await db.User.create({
-        email: data.email,
-        password: hashPasswordFromBcrypt,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        address: data.address,
-        phonenumber: data.phonenumber,
-        gender: data.gender === "1" ? true : false,
-        roleId: data.roleId,
-      });
 
       resolve({
         errCode: 0,
@@ -166,6 +167,7 @@ let updateUserData = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!data.id) {
+        console.log("check nodejs", data);
         resolve({
           errCode: 2,
           errMessage: "Missing required parameters",
