@@ -29,7 +29,7 @@ let initWebRoutes = (app) => {
   router.delete("/api/delete-user", userController.handleDeleteUsers);
 
   // =========================== API NEW
-  router.get("/allcode", userController.getAllCode);
+  router.get("/api/allcode", userController.getAllCode);
 
   return app.use("/", router);
 };

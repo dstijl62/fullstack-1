@@ -21,7 +21,7 @@ let handleUserLogin = (email, password) => {
       if (isExist) {
         // user already exist
         let user = await db.User.findOne({
-          attributes: ["email", "roleId", "password"],
+          attributes: ["email", "roleId", "password", "firstName", "lastName"],
           where: { email: email },
           raw: true,
         });
@@ -125,9 +125,10 @@ let createNewUser = (data) => {
           firstName: data.firstName,
           lastName: data.lastName,
           address: data.address,
-          phonenumber: data.phonenumber,
-          gender: data.gender === "1" ? true : false,
+          phonenumber: data.phoneNumber,
+          gender: data.gender,
           roleId: data.roleId,
+          positionId: data.positionId,
         });
       }
 
@@ -155,7 +156,6 @@ let deleteUser = (userId) => {
     await db.User.destroy({
       where: { id: userId },
     });
-
     resolve({
       errCode: 0,
       message: ` The user is deleted `,
@@ -182,6 +182,9 @@ let updateUserData = (data) => {
         user.lastName = data.lastName;
         user.address = data.address;
         user.phonenumber = data.phonenumber;
+        user.roleId = data.roleId || data.roleId;
+        user.positionId = data.positionId || data.positionId;
+        user.gender = data.gender || data.gender;
 
         await user.save();
 
@@ -194,12 +197,12 @@ let updateUserData = (data) => {
 
         let allUsers = await db.User.findAll();
 
-        resolve({
+        return resolve({
           errCode: 0,
           message: "Update the user succeeds!",
         });
       } else {
-        resolve({
+        return resolve({
           errCode: 1,
           errMessage: "The user is not found",
         });
