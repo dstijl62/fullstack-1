@@ -17,8 +17,9 @@
     "dotenv": "8.2.0",
     "ejs": "3.1.5",
     "express": "4.17.1",
+    "lodash": "^4.17.23",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.37.7"
+    "sequelize": "^6.37.8"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
