@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 
 //
 
-const { reject } = require("lodash");
+const { reject, first } = require("lodash");
 
 let buildUrlEmail = (doctorId, token) => {
   let result = `${process.env.URL_REACT}/verify-booking?token=${token}&doctorId=${doctorId}`;
@@ -24,7 +24,9 @@ let postBookAppointment = (data) => {
         !data.doctorId ||
         !data.timeType ||
         !data.date ||
-        !data.fullName
+        !data.fullName ||
+        !data.selectedGender ||
+        !data.address
       ) {
         resolve({
           errCode: 1,
@@ -48,6 +50,9 @@ let postBookAppointment = (data) => {
           defaults: {
             email: data.email,
             roleId: "R3",
+            gender: data.selectedGender,
+            address: data.address,
+            firstName: data.fullName,
           },
           raw: true,
         });
